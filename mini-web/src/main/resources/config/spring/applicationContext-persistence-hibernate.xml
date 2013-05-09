@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<!-- hibernate 属性配置 -->
+	<context:property-placeholder
+		location="classpath:config/hibernate/hibernate.properties" />
+		
+	<!-- 与sql语句匹配的参数配置 -->
+	<bean id="columnParametersCache" class="org.mini.framework.cache.ColumnParametersCacheImpl">
+		<property name="configFileName">
+			<value>config/mappers/mapper.xml</value>
+		</property>
+	</bean>
+
+	<!-- C3P0 数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${hibernate.connection.driver_class}" />
+		<property name="jdbcUrl" value="${hibernate.connection.url}" />
+		<property name="properties">
+			<props>
+				<prop key="user">${hibernate.connection.username}</prop>
+				<prop key="password">${hibernate.connection.password}</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 要扫描的包 -->
+		<property name="packagesToScan">
+			<list>
+				<value>org.mini.model.</value>
+			</list>
+		</property>
+		<!-- 映射文件配置 -->
+		
+		<property name="mappingResources">
+			<list>
+				<value>config/entities/User.hbm.xml</value>
+			</list>
+		</property>
+		
+		<!-- <property name="mappingLocations">
+			<list>
+				<value>config/entities/*.hbm.xml</value>
+			</list>
+		</property> -->
+		<!-- <property name="mappingDirectoryLocations"> <list> <value>classpath*:/config/entites/</value> 
+			</list> </property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+			</props>
+		</property>
+		<!--<property name="configLocation" value="classpath:config/hibernate.cfg.xml" 
+			/> -->
+	</bean>
+	<!-- 配置事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 配置注解实现管理事务（cglib：proxy-target-class="true"） -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+</beans>

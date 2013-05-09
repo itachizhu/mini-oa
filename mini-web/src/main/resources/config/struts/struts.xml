@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <!-- 开启使用开发模式，详细错误提示 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 将对象交给spring管理 -->
+    <constant name="struts.objectFactory" value="spring" />
+    <!-- 指定资源编码类型 -->
+    <constant name="struts.i18n.encoding" value="UTF-8" /> 
+	<!-- 指定每次请求到达，重新加载资源文件 -->
+    <constant name="struts.i18n.reload" value="false" />
+    <!-- 指定每次配置文件更改后，自动重新加载 -->
+    <constant name="struts.configuration.xml.reload" value="true" />
+    <!-- 国际化资源文件 -->
+    <constant name="struts.custom.i18n.resources" value="config/language/Language" />
+    <!-- 默认后缀名 -->
+    <constant name="struts.action.extension" value=",html,do,action" />
+	<!-- Struts Annotation，设置为注释注入 -->
+    <constant name="actionPackages" value="org.mini.web.action" />
+    
+    <!-- 非注解注入配置 -->
+    <package name="default" namespace="/" extends="json-default">
+        <interceptors>
+			<interceptor name="authority" class="org.mini.framework.interceptor.AuthorityInterceptor" />
+			<interceptor name="exception" class="org.mini.framework.interceptor.ExceptionInterceptor" />
+			<!--  
+			<interceptor-stack name="my-stack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="mysimple">
+					<param name="name">第一个</param>
+				</interceptor-ref>
+				<interceptor-ref name="second">
+					<param name="name">第二个</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			-->
+		</interceptors>
+		
+        <global-results>
+            <result name="login" type="redirectAction">login</result>
+            <result name="error" type="redirectAction">error</result>
+		</global-results>
+		
+        <!-- 
+        <global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.Exception"></exception-mapping> 
+        </global-exception-mappings>
+        -->
+        
+        <action name="login" class="org.mini.web.action.LoginAction">  
+            <result name="success">/pages/login/login.jsp</result>
+        </action>
+        
+        <action name="user_list2" class="org.mini.web.action.UserAction">  
+            <result name="success">/pages/user/index.jsp</result>
+        </action>
+        
+        <action name="user_*" class="org.mini.web.action.UserAction" method="{1}">  
+            <result name="success">/pages/user/{1}.jsp</result>
+            <interceptor-ref name="defaultStack" /> 
+            <interceptor-ref name="exception" />
+        </action>
+        
+        <action name="do_login" class="org.mini.web.action.LoginAction" method="login">
+            <result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">${actionErrors},${fieldErrors}</param>
+                <param name="excludeParams">${username},${password}</param>
+            </result>
+        </action>
+        
+        <action name="*" class="org.mini.web.action.ErrorAction">  
+            <result>/pages/demo/index.jsp</result>
+        </action>
+    </package>
+</struts>

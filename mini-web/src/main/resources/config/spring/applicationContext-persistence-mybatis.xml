@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- mybatis 属性配置 -->
+	<context:property-placeholder
+		location="classpath:config/mybatis/mybatis.properties" />
+		
+	<!-- 配置dbcp数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${mybatis.connection.driver_class}" />
+		<property name="url" value="${mybatis.connection.url}" />
+		<property name="username" value="${mybatis.connection.username}" />
+		<property name="password" value="${mybatis.connection.password}" />
+		<!-- 队列中的最小等待数 -->
+		<property name="minIdle" value="${mybatis.connection.minIdle}"></property>
+		<!-- 队列中的最大等待数 -->
+		<property name="maxIdle" value="${mybatis.connection.maxIdle}"></property>
+		<!-- 最长等待时间，单位毫秒 -->
+		<property name="maxWait" value="${mybatis.connection.maxWait}"></property>
+		<!-- 最大活跃数 -->
+		<property name="maxActive" value="${mybatis.connection.maxActive}"></property>
+		<property name="initialSize" value="${mybatis.connection.initialSize}"></property>
+	</bean>
+
+	<!-- 配置mybitasSqlSessionFactoryBean -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:config/mybatis/mybatis.xml"></property>
+	</bean>
+
+	<!-- 配置SqlSessionTemplate -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sessionFactory" />
+		<constructor-arg index="1" value="BATCH" />
+	</bean>
+
+	<!-- 配置事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 配置注解实现管理事务（cglib：proxy-target-class="true"） -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+</beans>

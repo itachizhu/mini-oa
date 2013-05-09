@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.mini.model.system">
+    <!--
+    <class name="Demo" table="test_t">
+        <id name="id" column="id" type="java.lang.Integer">
+            <generator class="native" />
+        </id>
+        <property name="name" column="name1" type="java.lang.String" />
+    </class>
+    -->
+    <query name="queryUer">
+        <![CDATA[from User where userName like CONCAT('%',:userName,'%') and empNo like CONCAT('%',:empNo,'%')]]>
+    </query>
+</hibernate-mapping>

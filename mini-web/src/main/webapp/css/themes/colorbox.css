@@ -1,0 +1,124 @@
+#colorbox,#cboxOverlay,#cboxWrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	overflow: hidden;
+}
+
+#cboxOverlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+
+#cboxMiddleLeft,#cboxBottomLeft {
+	clear: left;
+}
+
+#cboxContent {
+	position: relative;
+	overflow: hidden;
+}
+
+#cboxLoadedContent {
+	overflow: auto;
+}
+
+#cboxLoadedContent iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+#cboxTitle {
+	margin: 0;
+}
+
+#cboxLoadingOverlay,#cboxLoadingGraphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#cboxPrevious,#cboxNext,#cboxClose,#cboxSlideshow {
+	cursor: pointer;
+}
+
+#cboxOverlay {
+	background-color: #000000;
+}
+
+#colorbox {
+	
+}
+
+#cboxTopLeft,#cboxTopRight,#cboxBottomLeft,#cboxBottomRight {
+	width: 5px;
+	height: 5px;
+	background-color: #6f6f6f;
+}
+
+#cboxMiddleLeft,#cboxMiddleRight {
+	width: 5px;
+	background-color: #6f6f6f;
+}
+
+#cboxTopCenter,#cboxBottomCenter {
+	height: 5px;
+	background-color: #6f6f6f;
+}
+
+#cboxContent {
+	background: #ffffff;
+	color: #505050;
+}
+
+#cboxLoadedContent {
+	margin-top: 28px;
+}
+
+#cboxTitle {
+	background-color: #2D2D2D;
+    border-bottom: 1px solid #D2D2D2;
+    color: #FFFFFF;
+    font-family: 宋体;
+    font-size: 14px;
+    font-weight: bold;
+    height: 32px;
+    left: 0;
+    line-height: 27px;
+    padding-left: 10px;
+    padding-top: 6px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    width: 100%;
+}
+
+#cboxCurrent {
+	position: absolute;
+	bottom: 4px;
+	left: 58px;
+	color: #949494;
+}
+
+#cboxLoadingOverlay {
+	background: url(colorbox/loading_background.png) center center no-repeat;
+}
+
+#cboxLoadingGraphic {
+	background: url(colorbox/loading.gif) center center no-repeat;
+}
+
+#cboxClose {
+	position: absolute;
+	top: 6px;
+	right: 7px;
+	background: url(colorbox/close.png);
+	width: 25px;
+	height: 25px;
+	text-indent: -9999px;
+}

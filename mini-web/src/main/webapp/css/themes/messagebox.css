@@ -1,0 +1,9 @@
+.jqifade { position: absolute; background-color: #aaaaaa; }
+div.jqi { width: 400px; font-family: 宋体; position: absolute; background-color: #ffffff; font-size: 12px; text-align: left; border: solid 5px #FF2577; }
+div.jqi .jqicontainer { color: #505050; border: solid 1px #D2D2D2; }
+div.jqi .jqiclose { position: absolute; top: 1px; right: -2px; width: 0px; }
+div.jqi .jqimessage { padding: 10px; line-height: 20px; }
+div.jqi .jqibuttons { text-align: center; padding: 5px 0 5px 0; }
+div.jqi button { width: 45px; height: 19px; background: url(../images/messagebox/button.gif); border: none; color: #ffffff; font-weight: bold; font-size: 12px; margin: 0px 10px 5px 10px; cursor: pointer; }
+div.jqi button:hover { }
+div.jqi button.jqidefaultbutton { }

@@ -1,0 +1,93 @@
+﻿@charset "utf-8";
+/* #################### 主控制 ##################### */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,tr,td {
+	BORDER-TOP-WIDTH: 0px;  BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 100%; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-BOTTOM-WIDTH: 0px;MARGIN: 0px;PADDING: 0px; VERTICAL-ALIGN: baseline;  BORDER-RIGHT-WIDTH: 0px; outline: 0; 
+}
+ul{ list-style-type:none;}
+
+body{ font-family:Arial; font-size:12px; text-align:center; margin:0 auto; background-color:#fffff;}
+.content{width:1000px; text-align:left; margin:0 auto; }
+a{ text-decoration:none;}
+.clear{ clear:both;}
+.height10{width:100%; height:10px;}
+a:link{color:#3e3e3e;}
+body a:hover{color:#ff8101;}
+
+
+
+.ltop{width:1000px; text-align:left; margin:0 auto;  height:96px;}
+.hr_red{ width:100%; line-height:0px; border-bottom:solid 2px red;}
+.logo{ padding-top:22px;}
+.lbottom{ width:100%;  height:26px; background:url(../images/lbottombg.gif) repeat-x; position:fixed; bottom:0px; left:0px;}
+.wobg{ background:url(../images/wobg.gif) no-repeat 0 -2px; height:600px;}
+
+.login{width:331px; height:405px; position:absolute; left:780px;  top:190px; background:url(../images/login_bg.png) no-repeat 0 0;}
+
+.ltitle{ font-size:20px; font-weight:bold; font-family:微软雅黑;margin:28px 20px 8px 26px;width:280px;}
+.hr02{ line-height:0px; border-bottom:solid 2px #d7d7d7; margin:8px 20px 0 20px;width:290px;}
+
+.inputbg{width:245px; height:28px; line-height:28px; background:url(../images/input_bg.jpg) no-repeat 0 0;}
+.itext{ margin-left:15px; display:inline-block; color:#fff; font-family:微软雅黑;}
+.iinput{margin-left:9px; display:inline-block;  margin-top:1px; }
+.txt_input{width:170px;*width:167px;
+ height:22px; *height:20px;
+ border:solid 1px #c8c8c8;background:url(../images/input_bg.gif) repeat-x 0 0; line-height:24px;*line-height:22px;}
+.iinput02{margin-left:10px; display:inline-block;  margin-top:1px; }
+.logintxt{ margin:15px 20px 10px 15px;}
+.logintxt ul{ margin:0 25px;}
+.logintxt ul li{ margin:20px 0;}
+
+.btn_submit{width:97px; height:34px; border:0px; background:url(../images/btn_submit.gif) no-repeat 0 0; cursor:pointer;}
+
+
+
+/* 首页 */
+.head{ width:100%; height:61px; background:url(../images/top_bg01.gif)repeat-x 0 0;}
+.hlogo{ height:61px; width:298px; background:url(../images/hlogo01.gif)repeat-x 0 0; float:left;}
+.nav{width:1000px; margin:0 auto; height:61px;}
+.hright{ float:right; width:700px; height:61px; display:inline;}
+.tname{ padding-right:10px; text-align:right; height:35px;  line-height:36px;}
+.tname font{ font-weight:bold;}
+.tname a{ float:right;}
+.menu{ height:18px; padding-left:40px;}
+.menu a{ display:block; float:left; padding:2px 10px; height:20px; line-height:20px; border:solid 1px #a5a5a5; background:url(../images/menu_bg.gif) repeat-x 0 0; font-size:14px; font-weight:bold;}
+.menu a:hover{border:solid 1px #e56907; background:url(../images/menu_bg.gif) repeat-x 0 -30px; color:#fff;}
+
+
+
+
+@charset "utf-8";
+/* #################### 主控制 ##################### */
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,tr,td {
+	BORDER-TOP-WIDTH: 0px;  BORDER-LEFT-WIDTH: 0px; FONT-SIZE: 100%; BACKGROUND: none transparent scroll repeat 0% 0%; BORDER-BOTTOM-WIDTH: 0px;MARGIN: 0px;PADDING: 0px; VERTICAL-ALIGN: baseline;  BORDER-RIGHT-WIDTH: 0px; outline: 0; 
+}
+ul{ list-style-type:none;}
+
+body{ font-family:Arial; font-size:12px; text-align:center; margin:0 auto; background-color:#fffff;}
+a{ text-decoration:none;}
+a:link{color:#3e3e3e;}
+body a:hover{color:#ff8101;}
+
+
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    width: 0;
+}
+a {
+    text-decoration: none;
+}
+i {
+    font-style: normal;
+}
+.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+

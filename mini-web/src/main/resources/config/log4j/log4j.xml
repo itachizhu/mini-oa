@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<!-- 
+	
+	# -X号:X信息输出时左对齐；
+	# %p:日志信息级别
+	# %d{}:日志信息产生时间
+	# %c 列出logger名字空间的全称(类名)
+	# %C 列出调用logger的类的全名(包含包路径)
+	# %m:产生的日志具体信息
+	# %M 显示调用logger的方法名
+	# %n:%n:输出日志信息换行
+	# %l:产生日志的行号
+	# %L 显示调用logger的代码行
+	# %r 显示从程序启动时到记录该条日志时已经经过的毫秒数
+	# %t 输出产生该日志事件的线程名
+	
+	 -->
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %p [%c]: %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/logs/debug/mini-debug.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %p [%c]: %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="DEBUG" />
+			<param name="LevelMax" value="DEBUG" />
+		</filter>
+	</appender>
+
+	<appender name="INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/logs/info/mini-info.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %p [%c]: %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="INFO" />
+			<param name="LevelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/logs/warn/mini-warn.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5r][%-5p] %d{yyyy-MM-dd HH:mm:ss,SSS} method:%l %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="WARN" />
+			<param name="LevelMax" value="WARN" />
+		</filter>
+	</appender>
+
+	<appender name="ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${mini.root}/logs/error/mini-error.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyy-MM-dd HH:mm:ss} %p [%c]: %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="ERROR" />
+		</filter>
+	</appender>
+
+	<!-- 将一些开源公用包的info类信息屏蔽到其他层级去,以整洁我们自己主动输出的info信息,方便查看和查找问题  -->
+	<!-- 整理开始 -->
+	<logger name="org.hibernate">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.apache.cxf">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.jasypt">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="com.mchange">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.apache.struts2">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="com.opensymphony">
+		<level value="WARN" />
+	</logger>
+	<!-- 整理结束 -->
+
+	<root>
+		<priority value="STDOUT" />
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="DEBUG" />
+		<appender-ref ref="INFO" />
+		<appender-ref ref="WARN" />
+		<appender-ref ref="ERROR" />
+	</root>
+</log4j:configuration>
